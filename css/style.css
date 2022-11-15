@@ -587,6 +587,10 @@ textarea.input {
   border-radius: 20px;
 }
 
+.cart-product-price {
+  width: 300px;
+}
+
 .total {
   padding: 12px;
   text-align: right;
