@@ -105,7 +105,7 @@
 					<!-- /aside Widget -->
 
 					<!-- aside Widget -->
-					<!-- <div class="aside">
+					<div class="aside">
 						<h3 class="aside-title">Price</h3>
 						<div class="price-filter">
 							<div id="price-slider"></div>
@@ -121,7 +121,7 @@
 								<span class="qty-down">-</span>
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!-- /aside Widget -->
 
 					<!-- aside Widget -->
@@ -236,8 +236,21 @@
 					<div class="row">
 						<!-- product -->
 						<?php
+								// hiển thị 5 sản phẩm trên 1 trang
+								$perPage = 3;
+								// Lấy số trang trên thanh địa chỉ
+								$page;
+								if (isset($_GET['page'])) {
+									$page = $_GET['page'];
+								} else {
+									$page = 1;
+								}
+								// lấy đường dẫn đến file hiện hành
+								$url = $_SERVER['PHP_SELF'];
 								$product = new Products;
-								$products = $product->search($_GET['keyword']);
+								$products = $product->searchLimit($_GET['keyword'], $page, $perPage);
+								// Tính tổng số sản phẩm
+								$total = count($product->search($_GET['keyword']));
 								foreach ($products as $value) :
 						?>
 							<div class="col-md-4">
@@ -273,24 +286,21 @@
 									</div>
 								</div>
 							</div>
-					<?php endforeach;
-							endif; ?>
-					<!-- /product -->
+							<!-- /product -->
+						<?php endforeach;
+						?>
 					</div>
 					<!-- /store products -->
 
 					<!-- store bottom filter -->
-					<!-- <div class="store-filter clearfix">
-						<span class="store-qty">Showing 20</span>
+					<div class="store-filter clearfix">
+						<span class="store-qty">Showing 3</span>
 						<ul class="store-pagination">
-							<li class="active">1</li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+							<?php echo $product->paginate($url, $total, $perPage, $_GET['keyword']); ?>
 						</ul>
-					</div> -->
-					<!-- /store bottom filter -->
+					</div>
+				<?php endif; ?>
+				<!-- /store bottom filter -->
 				</div>
 				<!-- /STORE -->
 			</div>

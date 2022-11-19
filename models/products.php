@@ -60,4 +60,26 @@ class Products extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+
+    public function searchLimit($keywords, $page, $perPage)
+    {
+        $firstPage = ($page - 1) * $perPage;
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `name` LIKE ? LIMIT $firstPage, $perPage");
+        $keywords = "%$keywords%";
+        $sql->bind_param("s", $keywords);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
+    public function paginate($url, $total, $perPage, $keywords)
+    {
+        $totalPages = ceil($total / $perPage);
+        $link = "";
+        for ($j = 1; $j <= $totalPages; $j++) {
+            $link = $link . "<a href='$url?page=$j&keyword=$keywords'> $j </a>";
+        }
+        return $link;
+    }
 }
