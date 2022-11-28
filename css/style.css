@@ -91,6 +91,7 @@ ul, ol {
 \*----------------------------*/
 
 .primary-btn {
+  float: right;
   display: inline-block;
   padding: 12px 30px;
   background-color: #D10024;
@@ -2042,6 +2043,7 @@ text-align: right;
 }
 
 .footer {
+  text-align: center;
   margin: 30px 0px;
 }
 

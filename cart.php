@@ -37,13 +37,7 @@ session_start();
     <!-- Begin Header -->
     <?php
     // Import Header
-    include "sources/header.php";
-    // Import Sources
-    require 'config.php';
-    require 'models/db.php';
-    require 'models/manufactures.php';
-    require 'models/products.php';
-    require 'models/protypes.php';
+    require "sources/header.php";
     ?>
     <!-- End Header -->
 

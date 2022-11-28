@@ -1,9 +1,9 @@
 <?php
-class User extends Db
+class Admin extends Db
 {
-    public function checkLogin($username, $password)
+    public function checkLoginAdmin($username, $password)
     {
-        $sql = self::$connection->prepare("SELECT * FROM users WHERE `username` = ? AND `password`= ?");
+        $sql = self::$connection->prepare("SELECT * FROM admins WHERE `username` = ? AND `password`= ?");
         $password = md5($password);
         $sql->bind_param("ss", $username, $password);
         $sql->execute();

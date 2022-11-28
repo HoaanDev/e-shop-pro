@@ -9,7 +9,28 @@
                    <li><a href="#"><i class="fa fa-map-marker"></i> Thu Duc College</a></li>
                </ul>
                <ul class="header-links pull-right">
-                   <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                   <?php require './config.php';
+                    require './models/db.php';
+                    require './models/admins.php';
+                    require './models/customers.php';
+                    require './models/manufactures.php';
+                    require './models/products.php';
+                    require './models/orders.php';
+                    require './models/protypes.php';
+                    $name;
+                    $customer = new Customer;
+                    if (!empty($_SESSION['customer'])) { ?>
+                       <li><a href="#"><i class="fa fa-user-o"></i> <?php $customers = $customer->getAllCustomers();
+                                                                    foreach ($customers as $customerId => $value) {
+                                                                        if ($value['id'] == $_SESSION['customer']) {
+                                                                            $name = $value['name'];
+                                                                        }
+                                                                    }
+                                                                    echo $name; ?></a></li>
+                       <li><a href="signout.php"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
+                   <?php } else { ?>
+                       <li><a href="signin.php"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a></li>
+                   <?php } ?>
                </ul>
            </div>
        </div>
@@ -46,11 +67,11 @@
                    <div class="col-md-3 clearfix">
                        <div class="header-ctn">
                            <!-- Cart -->
-                               <a class="your-cart" href="addcart.php">
-                                   <i class="fa fa-shopping-cart"></i>
-                                   <br>
-                                   <span>Your Cart</span>
-                               </a>
+                           <a class="your-cart" href="addcart.php">
+                               <i class="fa fa-shopping-cart"></i>
+                               <br>
+                               <span>Your Cart</span>
+                           </a>
                            <!-- /Cart -->
 
                            <!-- Menu Toogle -->

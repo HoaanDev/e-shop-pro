@@ -6,7 +6,7 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<div class="col-md-6 col-xs-6">
+				<div class="col-md-12 col-xs-12">
 					<div class="footer">
 						<h3 class="footer-title">About Us</h3>
 						<p>Group 3
@@ -19,17 +19,6 @@
 							<li><a href="#"><i class="fa fa-map-marker"></i>Thu Duc College</a></li>
 							<li><a href="#"><i class="fa fa-phone"></i>0974443***</a></li>
 							<li><a href="#"><i class="fa fa-envelope-o"></i>21211tt****@mail.tdc.edu.vn</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix visible-xs"></div>
-				<div class="col-md-6 col-xs-6">
-					<div class="footer">
-						<h3 class="footer-title">Service</h3>
-						<ul class="footer-links">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">View Cart</a></li>
-							<li><a href="#">Wishlist</a></li>
 						</ul>
 					</div>
 				</div>
