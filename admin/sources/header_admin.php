@@ -6,6 +6,7 @@ require "../../models/products.php";
 require "../../models/protypes.php";
 require "../../models/customers.php";
 require "../../models/orders.php";
+require "../../models/order_product.php";
 ?>
 <!-- Begin Header -->
 <!-- Navbar -->
@@ -126,7 +127,7 @@ require "../../models/orders.php";
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../protypes/protypes_index.php" class="nav-link">
+                    <a href="../orders/orders_index.php" class="nav-link">
                         <i class="fas fa-table nav-icon"></i>
                         <p>Orders Manage</p>
                     </a>

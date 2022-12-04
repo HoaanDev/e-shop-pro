@@ -7,4 +7,14 @@ class OrderProduct extends Db {
         $sql->bind_param("iii", $orderId, $productId, $quantity);
         $sql->execute();
     }
+
+    public function getOrderProductById($orderId)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `order_product` WHERE `order_id` = ?");
+        $sql->bind_param("i", $orderId);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
 }

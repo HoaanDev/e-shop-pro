@@ -44,4 +44,14 @@ class Customer extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+
+    public function getCustomerById($customerId)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `customers` WHERE `id` = ?");
+        $sql->bind_param("i", $customerId);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
 }

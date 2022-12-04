@@ -18,5 +18,46 @@ class Order extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
-    
+
+    public function getAllOrders()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `orders`");
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
+    public function getOrderById($orderId)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `orders` WHERE `id` = ?");
+        $sql->bind_param("i", $orderId);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
+    public function editOrder($customerId, $nameReceive, $phoneNumber, $addressReceive, $status, $totalPrice)
+    {
+        $sql = self::$connection->prepare("INSERT INTO `orders`(`customer_id`, `name_receive`, `phone_receive`, `address_receive`, `status`, `total_price`) 
+        VALUES (?, ?, ?, ?, ?, ?)");
+        $sql->bind_param("isssid", $customerId, $nameReceive, $phoneNumber, $addressReceive, $status, $totalPrice);
+        $sql->execute();
+    }
+
+    public function deleteOrder($customerId, $nameReceive, $phoneNumber, $addressReceive, $status, $totalPrice)
+    {
+        $sql = self::$connection->prepare("INSERT INTO `orders`(`customer_id`, `name_receive`, `phone_receive`, `address_receive`, `status`, `total_price`) 
+        VALUES (?, ?, ?, ?, ?, ?)");
+        $sql->bind_param("isssid", $customerId, $nameReceive, $phoneNumber, $addressReceive, $status, $totalPrice);
+        $sql->execute();
+    }
+
+    public function updateOrderStatus($orderId, $statusValue)
+    {
+        $sql = self::$connection->prepare("UPDATE `orders` SET `status` = ? WHERE `id` = ? ");
+        $sql->bind_param("ii", $statusValue, $orderId);
+        $sql->execute();
+    }
 }
