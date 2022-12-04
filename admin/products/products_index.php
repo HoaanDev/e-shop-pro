@@ -71,7 +71,7 @@
                                             <?php echo $productValue['name'] ?>
                                         </td>
                                         <td class="text-center">
-                                            <?php echo $productValue['price'] ?>
+                                            <?php echo number_format($productValue['price']) . "₫" ?>
                                         </td>
                                         <td class="text-center">
                                             <?php echo $productValue['quantity'] ?>

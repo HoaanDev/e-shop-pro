@@ -30,7 +30,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Protypes Table</h3>
-
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -56,7 +55,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
+                                <?php
                                 $protype = new Protype;
                                 $protypes = $protype->getAllProtypes();
                                 foreach ($protypes as $protypeValue) {
@@ -69,15 +68,15 @@
                                             <?php echo $protypeValue['type_name'] ?>
                                         </td>
                                         <td class="project-actions text-center">
-                                            <a class="btn btn-primary btn-sm" href="products_detail.php">
+                                            <a class="btn btn-primary btn-sm" href="protypes_detail.php?type_id=<?php echo $protypeValue['type_id'] ?>">
                                                 <i class="fas fa-solid fa-info">
                                                 </i>
                                             </a>
-                                            <a class="btn btn-info btn-sm" href="products_edit.php">
+                                            <a class="btn btn-info btn-sm" href="protypes_edit.php?type_id=<?php echo $protypeValue['type_id'] ?>">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
+                                            <a class="btn btn-danger btn-sm" href="protypes_delete.php?type_id=<?php echo $protypeValue['type_id'] ?>">
                                                 <i class="fas fa-trash">
                                                 </i>
                                             </a>
@@ -90,7 +89,13 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-
+                <div class="row">
+                    <div class="col-12">
+                        <a class="btn btn-success btn-sm float-right" href="protypes_insert.php">
+                            <i class="fas fa-solid fa-plus"> Add Protype</i>
+                        </a>
+                    </div>
+                </div>
             </section>
             <!-- /.content -->
         </div>

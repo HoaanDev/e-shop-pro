@@ -53,10 +53,10 @@
                   <p class="text-muted"><?php echo $manufactures[0]['manu_desc'] ?></p>
                   <br>
                   <div class="text-muted">
-                    <p class="text-sm">Manufacture Id
+                    <p class="text-lg">Manufacture Id
                       <b class="d-block"><?php echo $manufactures[0]['manu_id'] ?></b>
                     </p>
-                    <p class="text-sm">Manufacture Name
+                    <p class="text-lg">Manufacture Name
                       <b class="d-block"><?php echo $manufactures[0]['manu_name'] ?></b>
                     </p>
                   </div>

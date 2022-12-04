@@ -25,9 +25,10 @@
 
       <!-- Main content -->
       <section class="content">
-        <form action="process_products_insert.php" method="get">
+        <form action="process_products_insert.php" method="post" enctype="multipart/form-data">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Form Insert</h3>
@@ -42,46 +43,76 @@
                   <div class="form-group">
                     <label for="inputName">Product Name</label>
                     <input type="text" id="inputName" class="form-control" name="name">
-                    <label for="inputManuId">Manu Id</label>
-                    <input type="text" id="inputManuId" class="form-control" name="manu_id">
-                    <label for="inputTypeId">Type Id</label>
-                    <input type="text" id="inputTypeId" class="form-control" name="type_id">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputManuId">Manufacture Name</label>
+                    <select id="inputManuId" class="form-control custom-select" name="manu_id">
+                      <?php
+                      $manufacture = new Manufacture;
+                      $manufactures = $manufacture->getAllManufactures();
+                      foreach ($manufactures as $manufactureValue) { ?>
+                        <option value="<?php echo $manufactureValue['manu_id'] ?>"><?php echo $manufactureValue['manu_name'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputTypeId">Protype Name</label>
+                    <select id="inputTypeId" class="form-control custom-select" name="type_id">
+                      <?php
+                      $protype = new Protype;
+                      $protypes = $protype->getAllProtypes();
+                      foreach ($protypes as $protypeValue) { ?>
+                        <option value="<?php echo $protypeValue['type_id'] ?>"><?php echo $protypeValue['type_name'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="inputPrice">Price</label>
                     <input type="text" id="inputPrice" class="form-control" name="price">
+                  </div>
+                  <div class="form-group">
                     <label for="inputImageLink">Image Link</label>
-                    <input type="text" id="inputImageLink" class="form-control" name="image">
+                    <input type="file" id="inputImageLink" class="form-control" name="image">
+                  </div>
+                  <div class="form-group">
                     <label for="inputDescription">Description</label>
                     <textarea id="inputDescription" class="form-control" rows="4" cols="50" name="description"></textarea>
+                  </div>
+                  <div class="form-group">
                     <label for="inputFeature">Feature</label>
                     <input type="text" id="inputFeature" class="form-control" name="feature">
-                    <label for="inputRating">Rating</label>
-                    <input type="text" id="inputRating" class="form-control" name="rating">
+                  </div>
+                  <div class="form-group">
                     <label for="inputQuantity">Quantity</label>
                     <input type="text" id="inputQuantity" class="form-control" name="quantity">
-                    <?php if (isset($_GET['notice'])) { ?>
-                      <p><?php echo $_GET['notice'] ?></p>
-                    <?php } ?>
                   </div>
+                  <?php if (isset($_GET['notice'])) { ?>
+                    <p><?php echo $_GET['notice'] ?></p>
+                  <?php } ?>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <a href="./products_index.php" class="btn btn-secondary">Cancel</a>
-              <input type="submit" value="Create" class="btn btn-success float-right">
-            </div>
-          </div>
-        </form>
-      </section>
-      <!-- /.content -->
+          <div class="col-md-2"></div>
     </div>
-    <!-- /.content-wrapper -->
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <a href="./products_index.php" class="btn btn-secondary">Cancel</a>
+        <input type="submit" value="Create" class="btn btn-success float-right">
+      </div>
+      <div class="col-2"></div>
+    </div>
+    </form>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
-    <!-- Begin Footer -->
-    <?php include "../sources/footer_admin.php"; ?>
-    <!-- End Footer -->
-    <!-- /.control-sidebar -->
+  <!-- Begin Footer -->
+  <?php include "../sources/footer_admin.php"; ?>
+  <!-- End Footer -->
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 

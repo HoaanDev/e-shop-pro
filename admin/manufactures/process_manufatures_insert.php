@@ -7,17 +7,17 @@ if (isset($_GET['manu_name']) && strlen(trim($_GET['manu_name'], " ")) > 0) {
     $manuDesc = $_GET['manu_desc'];
     $manufacture = new Manufacture;
     $manufactures = $manufacture->getAllManufactures();
-    $insertAvaible = false;
+    $insertAvailable = false;
     foreach ($manufactures as $manufactureValue) {
         if ($manuName == $manufactureValue['manu_name']) {
-            $insertAvaible = false;
+            $insertAvailable = false;
             header("Location: manufactures_insert.php?notice=Already has this Manufacture!");
             exit;
         } else {
-            $insertAvaible = true;
+            $insertAvailable = true;
         }
     }
-    if ($insertAvaible == true) {
+    if ($insertAvailable == true) {
         $manufacture->insertManufacture($manuName, $manuDesc);
         header("Location: manufactures_insert.php?notice=Add Successed!");
     }

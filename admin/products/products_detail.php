@@ -32,6 +32,10 @@
             <h3 class="card-title">Product <?php if (isset($_GET['id'])) {
                                               $product = new Products;
                                               $products = $product->getProductById($_GET['id']);
+                                              $manufacture = new Manufacture;
+                                              $manufactures = $manufacture->getManuById($products[0]['manu_id']);
+                                              $protype = new Protype;
+                                              $protypes = $protype->getProtypeById($products[0]['type_id']);
                                               echo  $products[0]['name'];
                                             } ?> Detail</h3>
 
@@ -49,7 +53,7 @@
               <div class="row">
                 <div class="col-2 col-md-2"></div>
                 <div class="col-8 col-md-8 text-center">
-                  <h3 class="text-primary"><i class="fas fa-industry"></i> <?php echo $products[0]['name'] ?></h3>
+                  <h3 class="text-primary"><i class="fas fa-file-powerpoint"></i> <?php echo $products[0]['name'] ?></h3>
                   <p class="text-muted"><?php echo $products[0]['description'] ?></p>
                   <br>
                   <div class="text-muted">
@@ -67,13 +71,13 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <p class="text-lg">Manu Id
-                          <b class="d-block"><?php echo $products[0]['manu_id'] ?></b>
+                        <p class="text-lg">Manufacture Name
+                          <b class="d-block"><?php echo $manufactures[0]['manu_name'] ?></b>
                         </p>
                       </div>
                       <div class="col-md-6">
-                        <p class="text-lg">Type Id
-                          <b class="d-block"><?php echo $products[0]['type_id'] ?></b>
+                        <p class="text-lg">Protype Name
+                          <b class="d-block"><?php echo $protypes[0]['type_name'] ?></b>
                         </p>
                       </div>
                     </div>
@@ -92,16 +96,20 @@
                     <div class="row">
                       <div class="col-md-6">
                         <p class="text-lg">Feature
-                          <b class="d-block"><?php echo $products[0]['feature'] ?></b>
+                          <b class="d-block"><?php if ($products[0]['feature'] == 1) {
+                                                echo "Trending";
+                                              } else {
+                                                echo "Not Trending";
+                                              } ?></b>
                         </p>
                       </div>
                       <div class="col-md-6">
                         <p class="text-lg">Rating
-                          <b class="d-block"><?php echo $products[0]['rating'] ?></b>
+                          <b class="d-block"><?php echo $products[0]['rating'] ?> <i class="fa fa-star"></i></b>
                         </p>
                       </div>
                     </div>
-                    
+
                     <p class="text-lg">Quantity
                       <b class="d-block"><?php echo $products[0]['quantity'] ?></b>
                     </p>

@@ -91,10 +91,10 @@ class Products extends Db
         $sql->execute();
     }
 
-    public function editProduct($productId, $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productRating, $productQty)
+    public function editProduct($productId, $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty)
     {
-        $sql = self::$connection->prepare("UPDATE `products` SET `name`= ?,`manu_id`= ?,`type_id`= ?,`price`= ?,`image`= ?,`description`= ?,`feature`= ?,`rating`= ?,`quantity`= ? WHERE `id` = ?");
-        $sql->bind_param("siiissiiii", $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productRating, $productQty, $productId);
+        $sql = self::$connection->prepare("UPDATE `products` SET `name`= ?,`manu_id`= ?,`type_id`= ?,`price`= ?,`image`= ?,`description`= ?,`feature`= ?,`quantity`= ? WHERE `id` = ?");
+        $sql->bind_param("siiissiii", $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty, $productId);
         $sql->execute();
     }
 

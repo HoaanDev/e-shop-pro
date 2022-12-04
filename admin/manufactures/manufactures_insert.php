@@ -25,7 +25,8 @@
       <section class="content">
         <form action="process_manufatures_insert.php" method="get">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Form Insert</h3>
@@ -40,21 +41,26 @@
                   <div class="form-group">
                     <label for="inputName">Manufacture Name</label>
                     <input type="text" id="inputName" class="form-control" name="manu_name">
+                  </div>
+                  <div class="form-group">
                     <label for="inputDescription">Manufacture Description</label>
                     <textarea id="inputDescription" class="form-control" rows="4" cols="50" name="manu_desc"></textarea>
-                    <?php if (isset($_GET['notice'])) { ?>
-                      <p><?php echo $_GET['notice'] ?></p>
-                    <?php } ?>
                   </div>
+                  <?php if (isset($_GET['notice'])) { ?>
+                    <p><?php echo $_GET['notice'] ?></p>
+                  <?php } ?>
                 </div>
               </div>
             </div>
+            <div class="col-md-2"></div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-2"></div>
+            <div class="col-8">
               <a href="./manufactures_index.php" class="btn btn-secondary">Cancel</a>
               <input type="submit" value="Create" class="btn btn-success float-right">
             </div>
+            <div class="col-2"></div>
           </div>
         </form>
       </section>
