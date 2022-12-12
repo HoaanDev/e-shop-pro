@@ -54,4 +54,11 @@ class Customer extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+
+    public function delCustomerById($customerId)
+    {
+        $sql = self::$connection->prepare("DELETE FROM `customers` WHERE `id` = ?");
+        $sql->bind_param("i", $customerId);
+        $sql->execute();
+    }
 }

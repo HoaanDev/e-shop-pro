@@ -60,4 +60,14 @@ class Order extends Db
         $sql->bind_param("ii", $statusValue, $orderId);
         $sql->execute();
     }
+
+    public function getNewOrders($quantity)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `orders` WHERE `created_at` ORDER BY `created_at` DESC LIMIT ?");
+        $sql->bind_param("i", $quantity);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
 }

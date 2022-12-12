@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-2 col-md-2"></div>
                                 <div class="col-8 col-md-8 text-center">
-                                    <h3 class="text-primary"><i class="fas fa-file-powerpoint"></i> <?php echo "Order" . $orders[0]['id'] ?></h3>
+                                    <h3 class="text-primary"><i class="fas fa-file-invoice-dollar"></i> <?php echo "Order " . $orders[0]['id'] ?></h3>
                                     <p class="text-muted"><?php if ($orders[0]['status'] == 0) { ?>
                                             <span class="badge badge-warning">Pending</span>
                                         <?php } elseif ($orders[0]['status'] == 1) { ?>

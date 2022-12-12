@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
@@ -49,13 +50,14 @@
           <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">CPU Traffic</span>
+                  <span class="info-box-text">Users</span>
                   <span class="info-box-number">
-                    10
-                    <small>%</small>
+                    <?php
+                    $customer = new Customer;
+                    echo count($customer->getAllCustomers());
+                    ?>
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -65,11 +67,14 @@
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-powerpoint"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Likes</span>
-                  <span class="info-box-number">41,410</span>
+                  <span class="info-box-text">Products</span>
+                  <span class="info-box-number"><?php 
+                  $product = new Products;
+                  echo count($product->getAllProducts());
+                  ?></span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -82,11 +87,14 @@
 
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-file-invoice-dollar"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">760</span>
+                  <span class="info-box-text">Orders</span>
+                  <span class="info-box-number"><?php 
+                  $order = new Order;
+                  echo count($order->getAllOrders());
+                  ?></span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -95,11 +103,18 @@
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-solid fa-hand-holding-dollar"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">New Members</span>
-                  <span class="info-box-number">2,000</span>
+                  <span class="info-box-text">Total Earn</span>
+                  <span class="info-box-number"><?php 
+                  $orders = $order->getAllOrders();
+                  $totalEarn = 0;
+                  foreach ($orders as $orderValue) {
+                    $totalEarn += $orderValue['total_price'];
+                  }
+                  echo number_format($totalEarn) . " ₫";
+                  ?></span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -597,69 +612,37 @@
                     <table class="table m-0">
                       <thead>
                         <tr>
-                          <th>Order ID</th>
-                          <th>Item</th>
-                          <th>Status</th>
-                          <th>Popularity</th>
+                          <th class="text-center">Order ID</th>
+                          <th class="text-center">Customer Name</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">Total Money</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success">Shipped</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger">Delivered</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-info">Processing</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger">Delivered</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success">Shipped</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                          </td>
-                        </tr>
+                        <?php
+                        $order = new Order;
+                        $orders = $order->getNewOrders(8);
+                        $customer = new Customer;
+                        foreach ($orders as $orderValue) {
+                        ?>
+                          <tr>
+                            <td class="text-center"><a href="../orders/orders_detail.php?id=<?php echo $orderValue['id'] ?>"><?php echo $orderValue['id'] ?></a></td>
+                            <td class="text-center"><?php $customers = $customer->getCustomerById($orderValue['customer_id']);
+                                                    echo $customers[0]['name'];
+                                                    ?></td>
+                            <td class="text-center"><?php if ($orderValue['status'] == 0) { ?>
+                                <span class="badge badge-warning">Pending</span>
+                              <?php } elseif ($orderValue['status'] == 1) { ?>
+                                <span class="badge badge-info">Accepted</span>
+                              <?php } elseif ($orderValue['status'] == 2) { ?>
+                                <span class="badge badge-danger">Rejected</span>
+                              <?php } ?>
+                            </td>
+                            <td class="text-center">
+                              <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo number_format($orderValue['total_price']) ?>₫</div>
+                            </td>
+                          </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>
@@ -667,8 +650,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+                  <a href="../orders/orders_index.php" class="btn btn-sm btn-secondary float-right">View All Orders</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
@@ -806,66 +788,29 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
                   <ul class="products-list product-list-in-card pl-2 pr-2">
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">Samsung TV
-                          <span class="badge badge-warning float-right">$1800</span></a>
-                        <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                      </div>
-                    </li>
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">Bicycle
-                          <span class="badge badge-info float-right">$700</span></a>
-                        <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                        </span>
-                      </div>
-                    </li>
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">
-                          Xbox One <span class="badge badge-danger float-right">
-                            $350
+                    <?php $product = new Products;
+                    $products = $product->getNewProducts(4);
+                    foreach ($products as $productValue) {
+                    ?>
+                      <li class="item">
+                        <div class="product-img">
+                          <img src="../../img/<?php echo $productValue['image'] ?>" alt="Product Image" class="img-size-50">
+                        </div>
+                        <div class="product-info">
+                          <a href="../products/products_detail.php?id=<?php echo $productValue['id']?>" class="product-title"><?php echo $productValue['name'] ?>
+                            <span class="badge badge-warning float-right"><?php echo number_format($productValue['price']) ?>₫</span></a>
+                          <span class="product-description">
+                            <?php echo substr($productValue['description'], 0, 50) ?>...
                           </span>
-                        </a>
-                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
-                      </div>
-                    </li>
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">PlayStation 4
-                          <span class="badge badge-success float-right">$399</span></a>
-                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                      </div>
-                    </li>
+                        </div>
+                      </li>
+                    <?php } ?>
                     <!-- /.item -->
                   </ul>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                  <a href="../products/products_index.php" class="uppercase">View All Products</a>
                 </div>
                 <!-- /.card-footer -->
               </div>

@@ -32,12 +32,10 @@ $order->insertOrder($customerId, $nameReceive, $phoneNumber, $addressReceive, $s
 
 $order = new Order;
 $orders = $order->getMaxOrderById($customerId);
-$quantity = 0;
 $orderProduct = new OrderProduct;
 foreach ($cart as $cartID => $cartValue) {
     foreach ($orders as $key => $orderId) {
-        $quantity += $cartValue;
-        $orderProduct->insertOrderProduct($orderId['MAX(`id`)'], $cartID, $quantity);
+        $orderProduct->insertOrderProduct($orderId['MAX(`id`)'], $cartID, $cartValue);
     }
 }
 unset($_SESSION['cart']);

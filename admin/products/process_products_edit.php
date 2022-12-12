@@ -8,7 +8,13 @@ if (isset($_POST['id']) && isset($_POST['name']) && strlen(trim($_POST['id'], " 
     $productManuId = $_POST['manu_id'];
     $productTypeId = $_POST['type_id'];
     $productPrice = $_POST['price'];
-    $productImgLink = $_FILES['image']['name'];
+    $newImg = $_FILES['image'];
+    $productImgLink = "";
+    if ($newImg['size'] > 0) {
+        $productImgLink = $_FILES['image']['name'];
+    } else {
+        $productImgLink = $_POST['image_old'];
+    }
     $productDesc = $_POST['description'];
     $productFeature = $_POST['feature'];
     $productQty = $_POST['quantity'];
@@ -16,7 +22,7 @@ if (isset($_POST['id']) && isset($_POST['name']) && strlen(trim($_POST['id'], " 
     $products = $product->getAllProducts();
     foreach ($products as $productValue) {
         if ($productId == $productValue['id']) {
-            $product->editProduct($productId, $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty);
+            $product->editProduct($productId, $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty);            
             $targetDir = "../../img/";
             $targetFile = $targetDir . basename($_FILES['image']['name']);
             move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);

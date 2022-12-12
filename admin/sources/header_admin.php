@@ -133,7 +133,7 @@ require "../../models/order_product.php";
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../protypes/protypes_index.php" class="nav-link">
+                    <a href="../customers/customers_index.php" class="nav-link">
                         <i class="fas fa-table nav-icon"></i>
                         <p>Customers Manage</p>
                     </a>

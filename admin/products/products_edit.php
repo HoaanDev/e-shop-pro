@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Project Edit</title>
+  <title>E-Shop Manage | Product Edit</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -107,8 +107,18 @@
                                                                 } ?>" class="form-control" name="price">
                     </div>
                     <div class="form-group">
-                      <label for="inputImageLink">Image Link</label>
+                      <label for="inputImageLink">Image</label>
                       <input type="file" id="inputImageLink" class="form-control" name="image">
+                      <img style="width:300px" src="../../img/<?php if (isset($_GET['id'])) {
+                                                                $product = new Products;
+                                                                $products = $product->getProductById($_GET['id']);
+                                                                echo $products[0]['image'];
+                                                              } ?>" alt="">
+                      <input type="hidden" id="inputImageLinkOld" value="<?php if (isset($_GET['id'])) {
+                                                                            $product = new Products;
+                                                                            $products = $product->getProductById($_GET['id']);
+                                                                            echo $products[0]['image'];
+                                                                          } ?>" class="form-control" name="image_old">
                     </div>
                     <div class="form-group">
                       <label for="inputDescription">Description</label>
