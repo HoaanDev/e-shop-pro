@@ -55,6 +55,16 @@ class Customer extends Db
         return $items;
     }
 
+    public function getNewCustomers($quantity)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `customers` WHERE `created_at` ORDER BY `created_at` DESC LIMIT ?");
+        $sql->bind_param("i", $quantity);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
     public function delCustomerById($customerId)
     {
         $sql = self::$connection->prepare("DELETE FROM `customers` WHERE `id` = ?");
