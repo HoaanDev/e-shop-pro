@@ -40,7 +40,7 @@
 	<!-- End Header -->
 
 	<!-- Begin New Product Section -->
-	<div id="new-products"class="section">
+	<div id="new-products" class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
