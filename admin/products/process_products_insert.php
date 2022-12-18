@@ -11,7 +11,6 @@ if (isset($_POST['name']) && strlen(trim($_POST['name'], " ")) > 0) {
     $productImgLink = $_FILES['image']['name'];
     $productDesc = $_POST['description'];
     $productFeature = $_POST['feature'];
-    $productRating = 0;
     $productQty = $_POST['quantity'];
     $product = new Products;
     $products = $product->getAllProducts();
@@ -26,7 +25,7 @@ if (isset($_POST['name']) && strlen(trim($_POST['name'], " ")) > 0) {
         }
     }
     if ($insertAvailable == true) {
-        $product->insertProduct($productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productRating, $productQty);
+        $product->insertProduct($productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty);
         $targetDir = "../../img/";
         $targetFile = $targetDir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);

@@ -17,10 +17,11 @@
                     require './models/products.php';
                     require './models/orders.php';
                     require './models/protypes.php';
+                    require './models/product_rating.php';
                     $name;
                     $customer = new Customer;
                     if (!empty($_SESSION['customer'])) { ?>
-                       <li><a href="#"><i class="fa fa-user-o"></i> <?php $customers = $customer->getAllCustomers();
+                       <li><a href="user_profile.php"><i class="fa fa-user-o"></i> <?php $customers = $customer->getAllCustomers();
                                                                     foreach ($customers as $customerId => $value) {
                                                                         if ($value['id'] == $_SESSION['customer']) {
                                                                             $name = $value['name'];

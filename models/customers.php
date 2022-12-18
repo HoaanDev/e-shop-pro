@@ -71,4 +71,11 @@ class Customer extends Db
         $sql->bind_param("i", $customerId);
         $sql->execute();
     }
+
+    public function updateCustomerById($customerId, $customerName, $customerEmail)
+    {
+        $sql = self::$connection->prepare("UPDATE `customers` SET `name`= ?,`email`= ? WHERE `id` = ?");
+        $sql->bind_param("ssi", $customerName, $customerEmail, $customerId);
+        $sql->execute();
+    }
 }

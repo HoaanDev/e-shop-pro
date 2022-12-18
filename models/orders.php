@@ -70,4 +70,23 @@ class Order extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+
+    public function getOrderByCustomerId($customerId, $productId) {
+        $sql = self::$connection->prepare("SELECT * FROM `orders`, `order_product` WHERE `orders`.`id` = `order_product`.`order_id` AND `customer_id` = ? AND `product_id` = ?");
+        $sql->bind_param("ii", $customerId, $productId);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
+    public function getOrderByCustomerId2($customerId) {
+        $sql = self::$connection->prepare("SELECT * FROM `orders` WHERE `customer_id` = ?");
+        $sql->bind_param("i", $customerId);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
 }

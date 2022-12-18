@@ -105,7 +105,13 @@
                       </div>
                       <div class="col-md-6">
                         <p class="text-lg">Rating
-                          <b class="d-block"><?php echo $products[0]['rating'] ?> <i class="fa fa-star"></i></b>
+                          <b class="d-block"><?php $productRating = new ProductRating;
+                                              $productsRating = $productRating->getProductRatingAVGById($products[0]['id']);
+                                              if ($productsRating[0]['ROUND(AVG(`rating`), 1)'] != null) {
+                                                echo $productsRating[0]['ROUND(AVG(`rating`), 1)'];
+                                              } else {
+                                                echo "0";
+                                              } ?> <i class="fa fa-star"></i></b>
                         </p>
                       </div>
                     </div>

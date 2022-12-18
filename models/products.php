@@ -83,11 +83,11 @@ class Products extends Db
         return $link;
     }
 
-    public function insertProduct($productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productRating, $productQty)
+    public function insertProduct($productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty)
     {
-        $sql = self::$connection->prepare("INSERT INTO `products`(`name`, `manu_id`, `type_id`, `price`, `image`, `description`, `feature`, `rating`, `quantity`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $sql->bind_param("siiissiii", $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productRating, $productQty);
+        $sql = self::$connection->prepare("INSERT INTO `products`(`name`, `manu_id`, `type_id`, `price`, `image`, `description`, `feature`, `quantity`) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $sql->bind_param("siiissii", $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty);
         $sql->execute();
     }
 

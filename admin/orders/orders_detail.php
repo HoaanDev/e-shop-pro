@@ -61,7 +61,9 @@
                                             <span class="badge badge-info">Accepted</span>
                                         <?php } elseif ($orders[0]['status'] == 2) { ?>
                                             <span class="badge badge-danger">Rejected</span>
-                                        <?php } ?>
+                                        <?php } elseif ($orders[0]['status'] == 3) { ?>
+                                            <span class="badge badge-success">Received</span>
+                                        <?php }?>
                                     </p>
                                     <br>
                                     <div class="text-muted">

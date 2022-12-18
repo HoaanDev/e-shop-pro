@@ -2248,3 +2248,74 @@ body{
   vertical-align: middle;
 }
 /* CART */
+
+.my-account {
+  background-color: grey;
+  padding: 60px 0 90px 60px;
+}
+
+.my-account label {
+  font-size: 20px;
+  padding-top: 30px;
+}
+
+.my-account input {
+  font-size: 16px;
+  padding: 12px;
+}
+
+.my-account .my-account-img{
+  padding: 20px;
+  border-radius: 200px;
+}
+
+.my-account .btn-save-changes-user-info {
+  background-color: #137528;
+  color: #FFF;
+  float: right;
+  margin: 20px 10px 0 0;
+  padding: 12px;
+}
+
+.my-order {
+  padding: 60px;
+  background-color: rgb(187, 187, 187);
+  height: 620px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.order-info {
+  background-color: #FFF;
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid black;
+}
+
+.btn-received {
+  color: rgb(252, 252, 252);
+  float: right;
+  background-color: #f85f23;
+  padding: 8px;
+  margin-top: -44px;
+  border: 1px solid black;
+
+}
+
+.btn-received:hover {
+  color: rgb(252, 252, 252);
+  background-color: rgb(238, 109, 77, 0.5);
+  padding: 8px;
+  margin-top: -44px;
+  border: 1px solid black;
+}
+
+.btn-cancel {
+  color: rgb(252, 252, 252);
+  float: right;
+  background-color: #9291908a;
+  padding: 8px;
+  margin-top: -44px;
+  margin-right: 100px;
+  border: 1px solid black;
+}

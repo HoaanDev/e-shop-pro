@@ -155,7 +155,9 @@
                                 <span class="badge badge-info">Accepted</span>
                               <?php } elseif ($orderValue['status'] == 2) { ?>
                                 <span class="badge badge-danger">Rejected</span>
-                              <?php } ?>
+                              <?php } elseif ($orderValue['status'] == 2) { ?>
+                                <span class="badge badge-success">Received</span>
+                              <?php }?>
                             </td>
                             <td class="text-center">
                               <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo number_format($orderValue['total_price']) ?>₫</div>

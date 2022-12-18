@@ -49,6 +49,30 @@ session_start();
 				$id = $_GET['id'];
 				$product = new Products;
 				$products = $product->getProductById($id);
+				$productRating = new ProductRating;
+				$productsRating = $productRating->getProductRatingById($_GET['id']);
+				if (count($productsRating) > 0) {
+					$star5 = 0;
+					$star4 = 0;
+					$star3 = 0;
+					$star2 = 0;
+					$star1 = 0;
+					foreach ($productsRating as $productRatingValue) {
+						if ($productRatingValue['rating'] == 5) {
+							$star5 += 1;
+						} else if ($productRatingValue['rating'] == 4) {
+							$star4 += 1;
+						} else if ($productRatingValue['rating'] == 3) {
+							$star3 += 1;
+						} else if ($productRatingValue['rating'] == 2) {
+							$star2 += 1;
+						} else if ($productRatingValue['rating'] == 1) {
+							$star1 += 1;
+						}
+					}
+					$sumRating = $star5 + $star4 + $star3 + $star2 + $star1;
+					$avgRating = $productRating->getProductRatingAVGById($_GET['id']);
+				}
 				?>
 				<div class="col-md-6">
 					<div id="product-main-img">
@@ -61,19 +85,25 @@ session_start();
 						<div>
 							<div class="product-rating">
 								<?php
-								if ($products[0]['rating'] == 5) {
-									for ($i = 0; $i < $products[0]['rating']; $i++) { ?>
-										<i class="fa fa-star"></i>
+								if (count($productsRating) > 0) {
+									if (round($avgRating[0]['ROUND(AVG(`rating`), 1)']) == 5) {
+										for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+											<i class="fa fa-star"></i>
+										<?php }
+									} else {
+										for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+											<i class="fa fa-star"></i>
+										<?php }
+										for ($j = 0; $j < (5 - round($avgRating[0]['ROUND(AVG(`rating`), 1)'])); $j++) { ?>
+											<i class="fa fa-star-o empty"></i>
+										<?php } ?>
 									<?php }
-								} else {
-									for ($i = 0; $i < $products[0]['rating']; $i++) { ?>
-										<i class="fa fa-star"></i>
-									<?php }
-									for ($j = 0; $j < (5 - $products[0]['rating']); $j++) { ?>
-										<i class="fa-regular fa-star"></i>
-									<?php
-									}
-									?>
+								} else { ?>
+									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star-o empty"></i>
 								<?php } ?>
 							</div>
 						</div>
@@ -98,6 +128,8 @@ session_start();
 					<div id="product-tab">
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+							<li><a data-toggle="tab" href="#tab2">Details</a></li>
+							<li><a data-toggle="tab" href="#tab3">Reviews</a></li>
 						</ul>
 						<div class="tab-content">
 							<div id="tab1" class="tab-pane fade in active">
@@ -107,11 +139,304 @@ session_start();
 									</div>
 								</div>
 							</div>
+							<div id="tab2" class="tab-pane fade in">
+								<div class="row">
+									<div class="col-md-12">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+									</div>
+								</div>
+							</div>
+							<div id="tab3" class="tab-pane fade in">
+								<div class="row">
+									<!-- Rating -->
+									<div class="col-md-3">
+										<div id="rating">
+											<?php
+											if (count($productsRating) > 0) {
+												$star5 = 0;
+												$star4 = 0;
+												$star3 = 0;
+												$star2 = 0;
+												$star1 = 0;
+												foreach ($productsRating as $productRatingValue) {
+													if ($productRatingValue['rating'] == 5) {
+														$star5 += 1;
+													} else if ($productRatingValue['rating'] == 4) {
+														$star4 += 1;
+													} else if ($productRatingValue['rating'] == 3) {
+														$star3 += 1;
+													} else if ($productRatingValue['rating'] == 2) {
+														$star2 += 1;
+													} else if ($productRatingValue['rating'] == 1) {
+														$star1 += 1;
+													}
+												}
+												$sumRating = $star5 + $star4 + $star3 + $star2 + $star1;
+												$avgRating = $productRating->getProductRatingAVGById($_GET['id']);
+											?>
+												<div class="rating-avg">
+													<span><?php echo $avgRating[0]['ROUND(AVG(`rating`), 1)']; ?></span>
+													<div class="rating-stars">
+														<?php
+														if (round($avgRating[0]['ROUND(AVG(`rating`), 1)']) == 5) {
+															for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+																<i class="fa fa-star"></i>
+															<?php }
+														} else {
+															for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+																<i class="fa fa-star"></i>
+															<?php }
+															for ($j = 0; $j < (5 - round($avgRating[0]['ROUND(AVG(`rating`), 1)'])); $j++) { ?>
+																<i class="fa fa-star-o empty"></i>
+															<?php } ?>
+														<?php } ?>
+													</div>
+												</div>
+												<ul class="rating">
+													<li>
+														<div class="rating-stars">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+														</div>
+														<div class="rating-progress">
+															<div style="width: <?php echo round(($star5 / $sumRating) * 100); ?>%;"></div>
+														</div>
+														<span class="sum"><?php echo $star5 ?></span>
+													</li>
+													<li>
+														<div class="rating-stars">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o"></i>
+														</div>
+														<div class="rating-progress">
+															<div style="width: <?php echo round(($star4 / $sumRating) * 100); ?>%;"></div>
+														</div>
+														<span class="sum"><?php echo $star4 ?></span>
+													</li>
+													<li>
+														<div class="rating-stars">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+														</div>
+														<div class="rating-progress">
+															<div style="width: <?php echo round(($star3 / $sumRating) * 100); ?>%;"></div>
+														</div>
+														<span class="sum"><?php echo $star3 ?></span>
+													</li>
+													<li>
+														<div class="rating-stars">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+														</div>
+														<div class="rating-progress">
+															<div style="width: <?php echo round(($star2 / $sumRating) * 100); ?>%;"></div>
+														</div>
+														<span class="sum"><?php echo $star2 ?></span>
+													</li>
+													<li>
+														<div class="rating-stars">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+														</div>
+														<div class="rating-progress">
+															<div style="width: <?php echo round(($star1 / $sumRating) * 100); ?>%;"></div>
+														</div>
+														<span class="sum"><?php echo $star1 ?></span>
+													</li>
+												</ul>
+										</div>
+									</div>
+									<!-- /Rating -->
+
+									<!-- Reviews -->
+									<div class="col-md-6">
+										<h4>Người dùng đã đánh giá:</h4>
+										<div id="reviews">
+											<ul class="reviews">
+												<?php
+												$customer = new Customer;
+												foreach ($productsRating as $productRatingValue) { ?>
+													<li>
+														<div class="review-heading">
+															<h5 class="name"><?php echo $customer->getCustomerById($productRatingValue['customer_id'])[0]['name']; ?></h5>
+															<p class="date"><?php echo $productRatingValue['created_at']; ?></p>
+															<div class="review-rating">
+																<?php
+																if ($productRatingValue['rating'] == 5) {
+																	for ($i = 0; $i < $productRatingValue['rating']; $i++) { ?>
+																		<i class="fa fa-star"></i>
+																	<?php }
+																} else {
+																	for ($i = 0; $i < $productRatingValue['rating']; $i++) { ?>
+																		<i class="fa fa-star"></i>
+																	<?php }
+																	for ($j = 0; $j < (5 - $productRatingValue['rating']); $j++) { ?>
+																		<i class="fa fa-star-o empty"></i>
+																	<?php
+																	}
+																	?>
+																<?php } ?>
+															</div>
+														</div>
+														<div class="review-body">
+															<p><?php echo $productRatingValue['review']; ?></p>
+														</div>
+													</li>
+												<?php } ?>
+											</ul>
+										</div>
+									</div>
+								<?php } else { ?>
+									<div class="rating-avg">
+										<span>0</span>
+										<div class="rating-stars">
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+									</div>
+									<ul class="rating">
+										<li>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="rating-progress">
+												<div></div>
+											</div>
+											<span class="sum">0</span>
+										</li>
+										<li>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<div class="rating-progress">
+												<div></div>
+											</div>
+											<span class="sum">0</span>
+										</li>
+										<li>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<div class="rating-progress">
+												<div></div>
+											</div>
+											<span class="sum">0</span>
+										</li>
+										<li>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<div class="rating-progress">
+												<div></div>
+											</div>
+											<span class="sum">0</span>
+										</li>
+										<li>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+											<div class="rating-progress">
+												<div></div>
+											</div>
+											<span class="sum">0</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /Rating -->
+
+							<!-- Reviews -->
+							<div class="col-md-6">
+								<h4>Người dùng đánh giá:</h4>
+								<div id="reviews">
+									<ul class="reviews">
+										<p>Chưa có đánh giá!</p>
+									</ul>
+								</div>
+							</div>
+						<?php }
+						?>
+						<!-- /Reviews -->
+
+						<!-- Review Form -->
+						<div class="col-md-3">
+							<h4>Đánh giá sản phẩm:</h4>
+							<div id="review-form">
+								<?php if (!empty($_SESSION['customer'])) {
+									$order = new Order;
+									$orders = $order->getOrderByCustomerId($_SESSION['customer'], $_GET['id']);
+									if (count($orders) > 0) { ?>
+										<form class="review-form" action="process_rating.php" method="post">
+											<input class="input" type="text" name="product_id" value="<?php echo $_GET['id']; ?>" hidden>
+											<input class="input" type="text" name="customer_id" value="<?php echo $_SESSION['customer']; ?>" hidden>
+											<textarea class="input" placeholder="Your Review" name="review"></textarea>
+											<div class="input-rating">
+												<span>Your Rating: </span>
+												<div class="stars">
+													<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+													<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+													<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+													<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+													<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+												</div>
+											</div>
+											<button class="primary-btn">Submit</button>
+										</form>
+									<?php } else { ?>
+										<p>Bạn chưa mua sản phẩm này nên không thể đánh giá!</p>
+									<?php } ?>
+									<p><?php if (isset($_GET['notice'])) echo $_GET['notice'] ?></p>
+								<?php } else { ?>
+									<p>Đăng nhập để đánh giá sản phẩm!</p>
+								<?php } ?>
+							</div>
+						</div>
+						<!-- /Review Form -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 	<!-- End Product Info Section -->
 
@@ -138,6 +463,7 @@ session_start();
 									<?php
 									$productRelated = new Products;
 									$productsRelated = $productRelated->getProductByType_ID($products[0]['type_id']);
+									$productRating = new ProductRating;
 									foreach ($productsRelated as $value) :
 									?>
 										<div class="product">
@@ -150,20 +476,47 @@ session_start();
 												<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 												<h4 class="product-price"><?php echo number_format($value['price']) ?> VND</h4>
 												<div class="product-rating">
-													<?php
-													if ($value['rating'] == 5) {
-														for ($i = 0; $i < $value['rating']; $i++) { ?>
-															<i class="fa fa-star"></i>
-														<?php }
-													} else {
-														for ($i = 0; $i < $value['rating']; $i++) { ?>
-															<i class="fa fa-star"></i>
-														<?php }
-														for ($j = 0; $j < (5 - $value['rating']); $j++) { ?>
-															<i class="fa-regular fa-star"></i>
-														<?php
+												<?php
+													$productsRating = $productRating->getProductRatingById($value['id']);
+													if (count($productsRating) > 0) {
+														$star5 = 0;
+														$star4 = 0;
+														$star3 = 0;
+														$star2 = 0;
+														$star1 = 0;
+														foreach ($productsRating as $productRatingValue) {
+															if ($productRatingValue['rating'] == 5) {
+																$star5 += 1;
+															} else if ($productRatingValue['rating'] == 4) {
+																$star4 += 1;
+															} else if ($productRatingValue['rating'] == 3) {
+																$star3 += 1;
+															} else if ($productRatingValue['rating'] == 2) {
+																$star2 += 1;
+															} else if ($productRatingValue['rating'] == 1) {
+																$star1 += 1;
+															}
 														}
-														?>
+														$sumRating = $star5 + $star4 + $star3 + $star2 + $star1;
+														$avgRating = $productRating->getProductRatingAVGById($value['id']);
+														if (round($avgRating[0]['ROUND(AVG(`rating`), 1)']) == 5) {
+															for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+																<i class="fa fa-star"></i>
+															<?php }
+														} else {
+															for ($i = 0; $i < round($avgRating[0]['ROUND(AVG(`rating`), 1)']); $i++) { ?>
+																<i class="fa fa-star"></i>
+															<?php }
+															for ($j = 0; $j < (5 - round($avgRating[0]['ROUND(AVG(`rating`), 1)'])); $j++) { ?>
+																<i class="fa fa-star-o empty"></i>
+															<?php } ?>
+														<?php }
+													} else { ?>
+														<i class="fa fa-star-o empty"></i>
+														<i class="fa fa-star-o empty"></i>
+														<i class="fa fa-star-o empty"></i>
+														<i class="fa fa-star-o empty"></i>
+														<i class="fa fa-star-o empty"></i>
 													<?php } ?>
 												</div>
 												<div class="product-btns">
