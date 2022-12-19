@@ -8,8 +8,11 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -63,7 +66,7 @@
                                             <span class="badge badge-danger">Rejected</span>
                                         <?php } elseif ($orders[0]['status'] == 3) { ?>
                                             <span class="badge badge-success">Received</span>
-                                        <?php }?>
+                                        <?php } ?>
                                     </p>
                                     <br>
                                     <div class="text-muted">
@@ -135,7 +138,7 @@
                                     <div class="text-center mt-5 mb-3">
                                         <a href="./orders_index.php" class="btn btn-sm btn-secondary">Back</a>
                                         <a href="./order_update.php?id=<?php echo $orders[0]['id'] ?>&status=1" class="btn btn-sm btn-info"><i class="fas fa-solid fa-check"></i> Accept</a>
-                                        <a href="./order_update.php?id=<?php echo $orders[0]['id'] ?>&status=2" class="btn btn-sm btn-danger"><i class="fas fa-solid fa-x">X</i> Reject</a>
+                                        <a href="./order_update.php?id=<?php echo $orders[0]['id'] ?>&status=2" class="btn btn-sm btn-danger"><i class="fas fa-solid fa-x"></i> Reject</a>
                                     </div>
                                 </div>
                                 <div class="col-2 col-md-2"></div>

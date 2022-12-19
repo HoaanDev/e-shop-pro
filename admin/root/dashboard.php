@@ -157,7 +157,7 @@
                                 <span class="badge badge-danger">Rejected</span>
                               <?php } elseif ($orderValue['status'] == 3) { ?>
                                 <span class="badge badge-success">Received</span>
-                              <?php }?>
+                              <?php } ?>
                             </td>
                             <td class="text-center">
                               <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo number_format($orderValue['total_price']) ?>₫</div>
@@ -246,7 +246,7 @@
                     foreach ($customers as $customerValue) {
                     ?>
                       <li>
-                        <a class="users-list-name" href="../customers/customers_detail.php?id=<?php echo $customerValue['id']?>"><?php echo $customerValue['name'] ?></a>
+                        <a class="users-list-name" href="../customers/customers_detail.php?id=<?php echo $customerValue['id'] ?>"><?php echo $customerValue['name'] ?></a>
                         <span class="users-list-date"><?php echo substr($customerValue['created_at'], 0, -8) ?></span>
                       </li>
                     <?php } ?>

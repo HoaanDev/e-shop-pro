@@ -8,8 +8,11 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -20,7 +23,7 @@
         <!-- Begin Header -->
         <?php require '../sources/header_admin.php'; ?>
         <!-- End Header -->
-    <!-- Begin Content -->
+        <!-- Begin Content -->
         <div class="content-wrapper">
             <section class="content">
                 <div class="card">
@@ -99,7 +102,7 @@
                 <div class="row">
                     <div class="col-12">
                         <a class="btn btn-success btn-sm float-right" href="products_insert.php">
-                            <i class="fas fa-solid fa-plus"> Add Products</i>
+                            <i class="fas fa-solid fa-plus"></i> Add Products
                         </a>
                     </div>
                 </div>
