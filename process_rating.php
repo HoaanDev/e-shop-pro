@@ -12,16 +12,16 @@ if (isset($_POST['rating'])) {
     if (count($productsRating) > 0) {
         foreach ($productsRating as $productRatingValue) {
             if ($productRatingValue['customer_id'] == $customerId) {
-                header("Location: product.php?id=$productId&notice=You already review this product!");
+                header("Location: product.php?id=" . $productId . "&notice=You already review this product!");
                 exit;
             } else {
                 $productRating->insertProductRating($productId, $customerId, $radioVal, $review);
-                header("Location: product.php?id=$productId&notice=Review successed!");
+                header("Location: product.php?id=" . $productId . "&notice=Review successed!");
                 exit;
             }
         }
     } else {
         $productRating->insertProductRating($productId, $customerId, $radioVal, $review);
-        header("Location: product.php?id=$productId&notice=Review successed!");
+        header("Location: product.php?id=" . $productId . "&notice=Review successed!");
     }
 }
