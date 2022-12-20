@@ -1,3 +1,7 @@
+<?php session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: ../adminlogin/login.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +12,11 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -104,7 +111,7 @@
                                                 <i class="fas fa-solid fa-check"></i>
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="order_update.php?id=<?php echo $orderValue['id'] ?>&status=2">
-                                                <i class="fas fa-solid fa-x">X</i>
+                                                <i class="fas fa-solid fa-x"></i>
                                             </a>
                                         </td>
                                     </tr>

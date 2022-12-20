@@ -1,18 +1,13 @@
-<?php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header("Location: ../adminlogin/login.php");
-}
-require '../../config.php';
+<?php require '../../config.php';
 require "../../models/db.php";
+require "../../models/admins.php";
 require "../../models/manufactures.php";
 require "../../models/products.php";
 require "../../models/protypes.php";
 require "../../models/customers.php";
 require "../../models/orders.php";
 require "../../models/order_product.php";
-require "../../models/product_rating.php";
-?>
+require "../../models/product_rating.php"; ?>
 <!-- Begin Header -->
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -82,9 +77,9 @@ require "../../models/product_rating.php";
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <p  class="d-block text-lg">Administrator</p>
+                <p class="d-block text-lg">Administrator</p>
                 <a href="../adminlogin/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-                
+
             </div>
         </div>
 

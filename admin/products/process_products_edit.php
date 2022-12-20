@@ -66,11 +66,10 @@ if (isset($_POST['id']) && isset($_POST['name']) && strlen(trim($_POST['id'], " 
 
                 if ($uploadOk == 0) {
                     header("Location: products_insert.php?notice=Cannot upload image!" . $fileExists . ", " . $fileSize . ", " . $fileFormat . "," . $fileFake . ".");
-                    // if everything is ok, try to upload file
                 } else {
                     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
                         $product->editProduct($productId, $productName, $productManuId, $productTypeId, $productPrice, $productImgLink, $productDesc, $productFeature, $productQty);
-                        header("Location: products_insert.php?notice=Add Successed!");
+                        header("Location: products_insert.php?notice=Edit Successed!");
                         exit;
                     } else {
                         header("Location: products_insert.php?notice=Error:" . $fileExists . ", " . $fileSize . ", " . $fileFormat . "," . $fileFake . ".");
