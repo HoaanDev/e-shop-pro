@@ -1,4 +1,9 @@
 <?php require '../../config.php';
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: ../adminlogin/login.php");
+}
+require '../../config.php';
 require "../../models/db.php";
 require "../../models/admins.php";
 require "../../models/manufactures.php";

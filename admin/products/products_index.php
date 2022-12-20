@@ -106,7 +106,7 @@ if (!isset($_SESSION['admin'])) {
                 <div class="row">
                     <div class="col-12">
                         <a class="btn btn-success btn-sm float-right" href="products_insert.php">
-                            <i class="fas fa-solid fa-plus"> Add Products</i>
+                            <i class="fas fa-solid fa-plus"></i> Add Products
                         </a>
                     </div>
                 </div>
